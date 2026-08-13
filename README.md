@@ -1,93 +1,82 @@
-# Tongil
+# PDF 합본 도구
 
+여러 개의 PDF 파일을 원하는 순서로 정렬해서 하나의 PDF로 합쳐주는 프로그램입니다.
+설치 과정 없이 실행 파일 하나만 더블클릭하면 바로 사용할 수 있고, 인터넷 연결 없이도 동작합니다.
 
+## 주요 특징
 
-## Getting started
+- **설치 불필요**: `PDF합본도구.exe` 파일 하나만 있으면 실행됩니다.
+- **완전 오프라인 동작**: 업로드한 PDF는 서버로 전송되지 않고 이 프로그램 안에서만 처리됩니다. 인터넷이 없는 폐쇄망 PC에서도 그대로 사용 가능합니다.
+- **순서 지정**: 파일을 드래그해서 합칠 순서를 자유롭게 바꿀 수 있습니다.
+- **페이지 제외**: 파일별로 특정 페이지만 빼고 합칠 수 있습니다 (예: `2,4` 또는 `2-4`).
+- **새 페이지 번호 삽입**: 합본된 PDF 하단에 "1 / 12" 형식으로 새 번호를 매길 수 있고, 원본에 있던 기존 페이지 번호는 자동으로 지워집니다.
+- **미리보기**: 각 파일의 첫 페이지 썸네일과 페이지 수·용량을 바로 확인할 수 있습니다.
+- **오류 파일 자동 감지**: PDF가 아니거나 손상된 파일은 자동으로 걸러내고, 열람 비밀번호 없이 암호화만 되어 있는 스캔본 PDF(복합기 스캔 저장 파일 등)도 정상 처리합니다.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 실행 방법
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+1. `PDF합본도구.exe` 파일을 원하는 위치(바탕화면, USB 등)에 복사합니다.
+2. 더블클릭하면 바로 실행됩니다.
 
-## Add your files
+> 일부 PC의 백신 프로그램이 처음 실행 시 "알 수 없는 게시자" 경고를 띄울 수 있습니다. 신뢰할 수 있는 배포 파일이므로 "추가 정보 → 실행"을 눌러 진행하면 됩니다.
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+## 사용 방법
 
+### 1. 파일 추가
+화면 중앙의 점선 박스를 클릭하거나, 합칠 PDF 파일들을 끌어다 놓습니다. 여러 파일을 한 번에 선택할 수 있습니다.
+
+### 2. 순서 정하기
+파일 목록의 ☰ 아이콘을 끌어서 순서를 바꿉니다. 목록 위에서부터 아래 순서대로 합쳐집니다.
+
+### 3. 특정 페이지 제외 (선택)
+각 파일 아래 "제외" 입력란에 그 파일에서 뺄 페이지 번호를 입력합니다.
+- `2` → 2페이지만 제외
+- `2,4` → 2, 4페이지 제외
+- `2-4` → 2~4페이지 제외
+- 비워두면 해당 파일의 모든 페이지가 포함됩니다.
+
+### 4. 새 페이지 번호 삽입 (선택)
+"새 페이지 번호 삽입" 체크박스를 켜면 합본된 PDF 각 페이지 하단 중앙에 "1 / 12" 형식으로 번호가 매겨집니다. 체크 여부와 관계없이, 원본 파일에 기존 페이지 번호가 있었다면 자동으로 지워집니다.
+
+### 5. 합본 실행
+파일명을 지정하고 "합본하기" 버튼을 누르면, 저장 위치를 묻는 창이 뜹니다. 원하는 폴더를 선택하면 저장됩니다.
+
+## 문제 해결
+
+| 증상 | 원인 / 해결 |
+|---|---|
+| 실행이 안 되거나 백신 경고가 떠요 | 신뢰할 수 있는 배포 파일이니 "추가 정보 → 실행"으로 진행하세요. |
+| "합본하기" 버튼이 눌러지지 않아요 | 목록에 오류(빨간색) 파일이 있거나 제외 범위 입력이 잘못됐을 수 있습니다. 안내 문구를 확인하세요. |
+| 파일이 빨간색(오류)으로 표시돼요 | PDF 형식이 아니거나 손상된 파일입니다. 원본을 다시 확인해주세요. |
+| 미리보기가 안 보여요 | 파일을 불러오는 중일 수 있습니다. 잠시 기다리면 표시됩니다. |
+
+## 개발자용: 소스에서 직접 빌드하기
+
+이 저장소에는 exe를 만드는 데 필요한 소스가 모두 포함되어 있습니다.
+
+```bash
+npm install
+npm run build
 ```
-cd existing_repo
-git remote add origin https://gitlab.aigov.go.kr/jhoh9505/tongil.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+빌드가 끝나면 `dist/PDF합본도구.exe`가 생성됩니다.
 
-* [Set up project integrations](https://gitlab.aigov.go.kr/jhoh9505/tongil/-/settings/integrations)
+**구성 파일**
 
-## Collaborate with your team
+| 파일 | 역할 |
+|---|---|
+| `main.js` | Electron 메인 프로세스 (창 생성, 저장 다이얼로그, 백그라운드 네트워크 차단) |
+| `package.json` | 앱 정보 및 electron-builder 빌드 설정 |
+| `PDF_합본_도구.html` | 화면(UI)과 합본 로직 전체 |
+| `pdf-lib.min.js` | PDF 병합 처리 라이브러리 |
+| `pdf.min.js` / `pdf.worker.min.js` | PDF 미리보기(썸네일) 렌더링 라이브러리 |
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+## 보안 참고사항
 
-## Test and Deploy
+- 업로드한 PDF 파일은 외부로 전송되지 않고 이 프로그램(브라우저 엔진) 안에서만 처리됩니다.
+- Node.js 통합이 꺼져 있어(`nodeIntegration: false`), 화면에 로드되는 콘텐츠가 파일 시스템 등에 직접 접근할 수 없습니다.
+- 저장은 사용자가 직접 위치를 선택하는 네이티브 "저장" 창을 통해서만 이루어집니다.
 
-Use the built-in continuous integration in GitLab.
+## 문의
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+프로그램 개선요청: 정보화담당관실 (jhoh9505@unikorea.go.kr)
